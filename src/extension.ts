@@ -2,12 +2,20 @@ import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 
-  console.log('Congratulations, your extension "o-relative-path" is now active!');
-
-  let disposable = vscode.commands.registerCommand('o-relative-path.helloWorld', () => {
-    vscode.window.showInformationMessage('Hello World from o-relative-path!');
+  var disposable = vscode.commands.registerCommand('o-relative-path.getRelativePath', function (uri) {
+    if (typeof uri === 'undefined') {
+      if (vscode.window.activeTextEditor) {
+        uri = vscode.window.activeTextEditor.document.uri;
+      }
+    }
+    if (!uri) {
+      vscode.window.showErrorMessage('error path');
+      return;
+    }
+    var path = vscode.workspace.asRelativePath(uri);
+    path = path.replace(/\\/g, '/');
+    vscode.window.showInformationMessage(path);
   });
-
   context.subscriptions.push(disposable);
 }
 

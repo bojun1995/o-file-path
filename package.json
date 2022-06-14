@@ -10,16 +10,30 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:o-relative-path.helloWorld"
+    "onCommand:o-relative-path.getRelativePath"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "o-relative-path.helloWorld",
-        "title": "Hello World"
+        "command": "o-relative-path.getRelativePath",
+        "title": "🔍复制相对路径"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "o-relative-path.getRelativePath",
+          "title": "复制相对路径2"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "o-relative-path.getRelativePath",
+          "title": "复制相对路径3"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
