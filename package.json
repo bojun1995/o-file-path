@@ -17,20 +17,18 @@
     "commands": [
       {
         "command": "o-relative-path.getRelativePath",
-        "title": "🔍复制相对路径"
+        "title": "📋复制相对路径"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "o-relative-path.getRelativePath",
-          "title": "复制相对路径2"
+          "command": "o-relative-path.getRelativePath"
         }
       ],
       "editor/title/context": [
         {
-          "command": "o-relative-path.getRelativePath",
-          "title": "复制相对路径3"
+          "command": "o-relative-path.getRelativePath"
         }
       ]
     }
