@@ -12,7 +12,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-console': 'error',
     'no-debugger': 'error',
-    '@typescript-eslint/no-unused-vars': 'warning',
+    '@typescript-eslint/no-unused-vars': 'error',
   },
   ignorePatterns: ['out', 'dist', '**/*.d.ts'],
 }
