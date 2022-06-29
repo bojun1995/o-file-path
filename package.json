@@ -1,6 +1,6 @@
 {
-  "name": "o-relative-path",
-  "displayName": "o-relative-path",
+  "name": "o-file-path",
+  "displayName": "o-file-path",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -10,25 +10,25 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:o-relative-path.getRelativePath"
+    "onCommand:o-file-path.getAliasPath"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "o-relative-path.getRelativePath",
-        "title": "📋复制相对路径"
+        "command": "o-file-path.getAliasPath",
+        "title": "📋复制别名路径"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "o-relative-path.getRelativePath"
+          "command": "o-file-path.getAliasPath"
         }
       ],
       "editor/title/context": [
         {
-          "command": "o-relative-path.getRelativePath"
+          "command": "o-file-path.getAliasPath"
         }
       ]
     }
