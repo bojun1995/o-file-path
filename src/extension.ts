@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
       const aliasConfig = vsCodeUtil.getAliasConfig()
       ret.parsedPath = pathUtil.replaceAlias(aliasConfig, ret.relativePath)
       clipboardUtil.writeText2Clipboard(ret.parsedPath)
-      // vscode.window.showInformationMessage(`realUri = ${realUri}`)
+      vscode.window.showInformationMessage(`realUri = ${ret.parsedPath}`)
     }
   })
   context.subscriptions.push(disposable)
