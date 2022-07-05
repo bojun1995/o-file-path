@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import type { CONFIG_ALIAS } from './type'
 
 /**
  * @description : 获取菜单选中路径或当前打开文件路径
@@ -18,9 +19,6 @@ export const getRealPath = (uri: vscode.Uri | undefined): string => {
     ret.path = vscode.workspace.asRelativePath(uri)
   }
 
-  if (ret.path === '') {
-    vscode.window.showErrorMessage('未能获取到文件路径')
-  }
   return ret.path
 }
 
@@ -35,6 +33,16 @@ export const getActivePath = (): string => {
     ret.path = vscode.window.activeTextEditor.document.uri.toString()
   }
   return ret.path
+}
+
+/**
+ * @description : 替换别名
+ * @param {CONFIG_ALIAS} aliasConfig
+ * @param {string} path
+ */
+export const replaceAlias = (aliasConfig: CONFIG_ALIAS, path: string): string => {
+  aliasConfig
+  return ''
 }
 
 /**

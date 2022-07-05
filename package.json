@@ -31,6 +31,19 @@
           "command": "o-file-path.getAliasPath"
         }
       ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "o-file-path configuration",
+      "properties": {
+        "o-file-path.alias": {
+          "type": "object",
+          "default": {
+            "@": "src"
+          },
+          "description": "相对路径别名"
+        }
+      }
     }
   },
   "scripts": {
