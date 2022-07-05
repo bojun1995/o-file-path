@@ -29,7 +29,7 @@ export const getActivePath = (): string => {
     path: '',
   }
   if (vscode.window.activeTextEditor) {
-    ret.path = vscode.window.activeTextEditor.document.uri.toString()
+    ret.path = vscode.workspace.asRelativePath(vscode.window.activeTextEditor.document.uri)
   }
   return ret.path
 }
@@ -42,12 +42,13 @@ export const getActivePath = (): string => {
 export const replaceAlias = (aliasConfig: vscode.WorkspaceConfiguration, path: string): string => {
   const ret = {
     path: '',
+    isParsed: false,
   }
   if (typeof aliasConfig === 'object') {
     const copyConfig = JSON.parse(JSON.stringify(aliasConfig))
     const keys = Object.keys(copyConfig)
     if (keys.length > 0) {
-      keys.some((key) => {
+      ret.isParsed = keys.some((key) => {
         const val = aliasConfig[key]
         if (path.search(val) === 0) {
           ret.path = path.replace(val, key)
@@ -57,6 +58,10 @@ export const replaceAlias = (aliasConfig: vscode.WorkspaceConfiguration, path: s
         }
       })
     }
+  }
+  if (ret.isParsed === false) {
+    // vscode.window.showErrorMessage('没有对应别名配置')
+    throw new Error('没有对应别名配置')
   }
   return ret.path
 }

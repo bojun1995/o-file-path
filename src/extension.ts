@@ -14,10 +14,16 @@ export function activate(context: vscode.ExtensionContext) {
     if (ret.relativePath === '') {
       vscode.window.showErrorMessage('未能获取到文件路径')
     } else {
-      const aliasConfig = vsCodeUtil.getAliasConfig()
-      ret.parsedPath = pathUtil.replaceAlias(aliasConfig, ret.relativePath)
-      clipboardUtil.writeText2Clipboard(ret.parsedPath)
-      vscode.window.showInformationMessage(`realUri = ${ret.parsedPath}`)
+      try {
+        const aliasConfig = vsCodeUtil.getAliasConfig()
+        ret.parsedPath = pathUtil.replaceAlias(aliasConfig, ret.relativePath)
+        clipboardUtil.writeText2Clipboard(ret.parsedPath)
+        vscode.window.showInformationMessage('已经复制对应路径')
+        // vscode.window.showInformationMessage(`realUri = ${ret.parsedPath}`)
+      } catch (err) {
+        const error = err as Error
+        vscode.window.showErrorMessage(error.message)
+      }
     }
   })
   context.subscriptions.push(disposable)
