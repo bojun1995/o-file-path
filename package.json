@@ -37,10 +37,11 @@
       "title": "o-file-path aliasConfig相对路径别名",
       "properties": {
         "o-file-path.alias": {
-          "type": "object",
-          "default": {
-            "@": "src"
-          },
+          "type": "array",
+          "default": [
+            { "alias": "@", "path": "src" },
+            { "alias": "#", "path": "src/assets" }
+          ],
           "description": "aliasConfig相对路径别名"
         }
       }
