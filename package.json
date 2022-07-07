@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:o-file-path.getAliasPath"
+    "onCommand:o-file-path.getAliasPath",
+    "onCommand:o-file-path.getImportAliasPath"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -18,17 +19,27 @@
       {
         "command": "o-file-path.getAliasPath",
         "title": "📋复制别名路径"
+      },
+      {
+        "command": "o-file-path.getImportAliasPath",
+        "title": "📋复制import别名路径"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "o-file-path.getAliasPath"
+        },
+        {
+          "command": "o-file-path.getImportAliasPath"
         }
       ],
       "editor/title/context": [
         {
           "command": "o-file-path.getAliasPath"
+        },
+        {
+          "command": "o-file-path.getImportAliasPath"
         }
       ]
     },

@@ -75,3 +75,11 @@ export const replaceAlias = (aliasConfigList: CONFIG_ALIAS[], path: string): str
 export const replacePath = (uri: string) => {
   return uri.replace(/\\/g, '/')
 }
+
+/**
+ * @description : 获取import path
+ * @param {string} uri
+ */
+export const getImportPath = (relativePath: string, aliasPath: string): string => {
+  return `import XXXX from "${aliasPath}"`
+}
