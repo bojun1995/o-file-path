@@ -1,3 +1,4 @@
 export interface CONFIG_ALIAS {
-  [propName: string]: string
+  alias: string
+  path: string
 }

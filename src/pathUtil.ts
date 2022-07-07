@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import type { CONFIG_ALIAS } from './type'
 
 /**
  * @description : 获取菜单选中路径或当前打开文件路径
@@ -39,28 +40,29 @@ export const getActivePath = (): string => {
  * @param {vscode.WorkspaceConfiguration} aliasConfig
  * @param {string} path
  */
-export const replaceAlias = (aliasConfig: vscode.WorkspaceConfiguration, path: string): string => {
+export const replaceAlias = (aliasConfigList: CONFIG_ALIAS[], path: string): string => {
   const ret = {
     path: '',
     isParsed: false,
   }
-  if (typeof aliasConfig === 'object') {
-    const copyConfig = JSON.parse(JSON.stringify(aliasConfig))
-    const keys = Object.keys(copyConfig)
-    if (keys.length > 0) {
-      ret.isParsed = keys.some((key) => {
-        const val = aliasConfig[key]
-        if (path.search(val) === 0) {
-          ret.path = path.replace(val, key)
+  try {
+    ret.isParsed = aliasConfigList.some((cfg) => {
+      if (cfg.alias && cfg.path) {
+        if (path.search(cfg.path) === 0) {
+          ret.path = path.replace(cfg.path, cfg.alias)
           return true
         } else {
           return false
         }
-      })
-    }
+      } else {
+        throw new Error('别名配置错误')
+      }
+    })
+  } catch (err) {
+    const error = err as Error
+    throw new Error(error.message)
   }
   if (ret.isParsed === false) {
-    // vscode.window.showErrorMessage('没有对应别名配置')
     throw new Error('没有对应别名配置')
   }
   return ret.path
