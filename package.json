@@ -48,8 +48,12 @@
       "title": "o-file-path",
       "properties": {
         "o-file-path.alias": {
-          "type": "array",
-          "markdownDescription": "[ { \"alias\": \"@\", \"path\": \"src\" }, { \"alias\": \"#\", \"path\": \"src/assets\" } ]"
+          "markdownDescription": "[ { \"alias\": \"@\", \"path\": \"src\" }, { \"alias\": \"#\", \"path\": \"src/assets\" } ]",
+          "type": "array"
+        },
+        "o-file-path.import": {
+          "markdownDescription": "[ { \"alias\": \"@\", \"path\": \"src\" }, { \"alias\": \"#\", \"path\": \"src/assets\" } ]",
+          "type": "object"
         }
       }
     }
