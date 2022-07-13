@@ -3,6 +3,7 @@ import * as pathUtil from './pathUtil'
 import * as clipboardUtil from './clipboardUtil'
 
 export function activate(context: vscode.ExtensionContext) {
+  // 别名路径
   const aliasPath = vscode.commands.registerCommand('o-file-path.getAliasPath', (uri: vscode.Uri | undefined) => {
     const ret = {
       relativePath: '',
@@ -24,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   })
 
+  // import 别名路径
   const importAliasPath = vscode.commands.registerCommand(
     'o-file-path.getImportAliasPath',
     (uri: vscode.Uri | undefined) => {
@@ -49,7 +51,26 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
   )
-  context.subscriptions.push(aliasPath, importAliasPath)
+
+  const relativePath = vscode.commands.registerTextEditorCommand(
+    'o-file-path.getRelativePath',
+    (textEditor: vscode.TextEditor) => {
+      try {
+        const selectionText = textEditor.document.getText(textEditor.selection)
+        const activePath = pathUtil.getActivePathByTextEditor(textEditor)
+        const ret = pathUtil.getRelativePath(selectionText, activePath)
+        clipboardUtil.writeText2Clipboard(ret)
+        vscode.window.showInformationMessage('已经复制相对路径', ret)
+        if (selectionText === '') {
+          vscode.window.showErrorMessage('请选择要转换的文件路径')
+        }
+      } catch (err) {
+        const error = err as Error
+        vscode.window.showErrorMessage(error.message)
+      }
+    }
+  )
+  context.subscriptions.push(aliasPath, importAliasPath, relativePath)
 }
 
 export function deactivate() {

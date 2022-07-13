@@ -11,18 +11,23 @@
   ],
   "activationEvents": [
     "onCommand:o-file-path.getAliasPath",
-    "onCommand:o-file-path.getImportAliasPath"
+    "onCommand:o-file-path.getImportAliasPath",
+    "onCommand:o-file-path.getRelativePath"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "o-file-path.getAliasPath",
-        "title": "📋复制别名路径"
+        "title": "📋 复制别名路径"
       },
       {
         "command": "o-file-path.getImportAliasPath",
-        "title": "📋复制import别名路径"
+        "title": "📋 复制import别名路径"
+      },
+      {
+        "command": "o-file-path.getRelativePath",
+        "title": "📋 复制相对路径"
       }
     ],
     "menus": {
@@ -40,6 +45,12 @@
         },
         {
           "command": "o-file-path.getImportAliasPath"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "o-file-path.getRelativePath"
         }
       ]
     },

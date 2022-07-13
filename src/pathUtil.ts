@@ -36,6 +36,20 @@ export const getActivePath = (): string => {
 }
 
 /**
+ * @description : 从TextEditor中获取当前访问文件路径
+ * @param {vscode} textEditor
+ */
+export const getActivePathByTextEditor = (textEditor: vscode.TextEditor): string => {
+  const ret = {
+    path: '',
+  }
+  if (vscode.window.activeTextEditor) {
+    ret.path = vscode.workspace.asRelativePath(textEditor.document.uri)
+  }
+  return ret.path
+}
+
+/**
  * @description : 替换别名
  * @param {vscode.WorkspaceConfiguration} aliasConfig
  * @param {string} path
@@ -87,4 +101,11 @@ export const getImportPath = (relativePath: string, aliasPath: string): string =
   const firstChar = fileNameWithoutType.charAt(0).toUpperCase()
   const fileName = `${firstChar}${fileNameWithoutType.slice(1, fileNameWithoutType.length)}`
   return `import ${fileName} from "${aliasPath}"`
+}
+
+export const getRelativePath = (selectionText: string, activePath: string): string => {
+  if (selectionText === '') {
+    throw new Error('请复制正确路径')
+  }
+  return ''
 }
