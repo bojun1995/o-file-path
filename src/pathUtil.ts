@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type { CONFIG_ALIAS } from './type'
+import * as vsCodeUtil from './vsCodeUtil'
 
 /**
  * @description : 获取菜单选中路径或当前打开文件路径
@@ -40,7 +40,8 @@ export const getActivePath = (): string => {
  * @param {vscode.WorkspaceConfiguration} aliasConfig
  * @param {string} path
  */
-export const replaceAlias = (aliasConfigList: CONFIG_ALIAS[], path: string): string => {
+export const replaceAlias = (path: string): string => {
+  const aliasConfigList = vsCodeUtil.getAliasConfigList()
   const ret = {
     path: '',
     isParsed: false,
@@ -81,5 +82,8 @@ export const replacePath = (uri: string) => {
  * @param {string} uri
  */
 export const getImportPath = (relativePath: string, aliasPath: string): string => {
+  // const config = vsCodeUtil.getImportNameConfig()
+  // const pathList = relativePath.split('/')
+  // const fileNameWithoutType = pathList[pathList.length - 1].split('.')[0]
   return `import XXXX from "${aliasPath}"`
 }

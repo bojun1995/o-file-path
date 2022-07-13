@@ -51,11 +51,17 @@
           "markdownDescription": "[ { \"alias\": \"@\", \"path\": \"src\" }, { \"alias\": \"#\", \"path\": \"src/assets\" } ]",
           "type": "array"
         },
-        "o-file-path.import": {
-          "markdownDescription": "导入名称起始下标",
+        "o-file-path.importNameStartIndex": {
+          "markdownDescription": "生成导入名称起始下标(从路径的最后一级往前)",
           "type": "integer",
           "minimum": 0,
-          "default": 5
+          "default": 0
+        },
+        "o-file-path.importNameEndIndex": {
+          "markdownDescription": "生成导入名称结束下标(从路径的最后一级往前)",
+          "type": "integer",
+          "minimum": 0,
+          "default": 1
         }
       }
     }

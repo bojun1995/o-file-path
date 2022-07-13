@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as pathUtil from './pathUtil'
 import * as clipboardUtil from './clipboardUtil'
-import * as vsCodeUtil from './vsCodeUtil'
 
 export function activate(context: vscode.ExtensionContext) {
   const aliasPath = vscode.commands.registerCommand('o-file-path.getAliasPath', (uri: vscode.Uri | undefined) => {
@@ -15,8 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showErrorMessage('未能获取到文件路径')
     } else {
       try {
-        const aliasConfigList = vsCodeUtil.getAliasConfigList()
-        ret.aliasPath = pathUtil.replaceAlias(aliasConfigList, ret.relativePath)
+        ret.aliasPath = pathUtil.replaceAlias(ret.relativePath)
         clipboardUtil.writeText2Clipboard(ret.aliasPath)
         vscode.window.showInformationMessage('已经复制别名路径', ret.aliasPath)
       } catch (err) {
@@ -40,8 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showErrorMessage('未能获取到文件路径')
       } else {
         try {
-          const aliasConfigList = vsCodeUtil.getAliasConfigList()
-          ret.aliasPath = pathUtil.replaceAlias(aliasConfigList, ret.relativePath)
+          ret.aliasPath = pathUtil.replaceAlias(ret.relativePath)
           ret.importPath = pathUtil.getImportPath(ret.relativePath, ret.aliasPath)
           clipboardUtil.writeText2Clipboard(ret.importPath)
           vscode.window.showInformationMessage('已经复制import别名路径', ret.importPath)
