@@ -130,8 +130,27 @@ export const getRelativePath = (selectionText: string, activePath: string): stri
   // src/components/layout/TheLayout/index.vue
   // src/components/base/OButton/index.vue
   // ../../base/OButton/index.vue
+  const ret = {
+    importPath: '',
+    importPathList: [] as string[],
+  }
   if (selectionText === '') {
     throw new Error('请复制正确路径')
   }
-  return ''
+  const selectPathList = selectionText.split('/')
+  const activePathList = activePath.split('/')
+  if (selectPathList.length === 0) {
+    throw new Error('请选中正确的文件路径')
+  }
+  for (let idx = 0; idx < selectPathList.length; idx++) {
+    const selectPath = selectPathList[idx]
+    const activatePath = activePathList[idx]
+    if (selectPath === activatePath) {
+      // ret.importPathList.push('..')
+    } else {
+      ret.importPathList.push(selectPath)
+    }
+  }
+  debugger
+  return ret.importPath
 }
