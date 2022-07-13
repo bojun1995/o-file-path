@@ -92,18 +92,44 @@ export const replacePath = (uri: string) => {
 }
 
 /**
+ * @description : 获取大驼峰单词名
+ * @param {string} fileName
+ */
+export const getUpperCamelCaseName = (fileName: string): string => {
+  const firstChar = fileName.charAt(0).toUpperCase()
+  const ret = `${firstChar}${fileName.slice(1, fileName.length)}`
+  return ret
+}
+
+/**
  * @description : 获取import path
  * @param {string} uri
  */
 export const getImportPath = (relativePath: string, aliasPath: string): string => {
   const pathList = relativePath.split('/')
-  const fileNameWithoutType = pathList[pathList.length - 1].split('.')[0]
-  const firstChar = fileNameWithoutType.charAt(0).toUpperCase()
-  const fileName = `${firstChar}${fileNameWithoutType.slice(1, fileNameWithoutType.length)}`
-  return `import ${fileName} from "${aliasPath}"`
+  const fileNameList = pathList[pathList.length - 1].split('.')
+  let fileNameWithoutType = ''
+  if (fileNameList.length == 1) {
+    // test 没有文件格式
+    fileNameWithoutType = fileNameList[0]
+  } else if (fileNameList.length > 1) {
+    // matrix.module.scss 多个点
+    // theme.scss 单个点
+    fileNameList.forEach((nameStr, nameIdx) => {
+      if (nameIdx !== fileNameList.length - 1) {
+        fileNameWithoutType += getUpperCamelCaseName(nameStr)
+      }
+    })
+  }
+  const importName = getUpperCamelCaseName(fileNameWithoutType)
+  return `import ${importName} from "${aliasPath}"`
 }
 
 export const getRelativePath = (selectionText: string, activePath: string): string => {
+  // src/components/layout/TheLayout/TheEditorBox/index.vue
+  // src/components/layout/TheLayout/index.vue
+  // src/components/base/OButton/index.vue
+  // ../../base/OButton/index.vue
   if (selectionText === '') {
     throw new Error('请复制正确路径')
   }

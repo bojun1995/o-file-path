@@ -27,7 +27,7 @@
       },
       {
         "command": "o-file-path.getRelativePath",
-        "title": "📋 复制相对路径"
+        "title": "📋 转换为相对路径"
       }
     ],
     "menus": {
