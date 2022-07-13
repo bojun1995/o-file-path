@@ -82,8 +82,9 @@ export const replacePath = (uri: string) => {
  * @param {string} uri
  */
 export const getImportPath = (relativePath: string, aliasPath: string): string => {
-  // const config = vsCodeUtil.getImportNameConfig()
-  // const pathList = relativePath.split('/')
-  // const fileNameWithoutType = pathList[pathList.length - 1].split('.')[0]
-  return `import XXXX from "${aliasPath}"`
+  const pathList = relativePath.split('/')
+  const fileNameWithoutType = pathList[pathList.length - 1].split('.')[0]
+  const firstChar = fileNameWithoutType.charAt(0).toUpperCase()
+  const fileName = `${firstChar}${fileNameWithoutType.slice(1, fileNameWithoutType.length)}`
+  return `import ${fileName} from "${aliasPath}"`
 }
