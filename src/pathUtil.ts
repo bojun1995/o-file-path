@@ -142,15 +142,21 @@ export const getRelativePath = (selectionText: string, activePath: string): stri
   if (selectPathList.length === 0) {
     throw new Error('请选中正确的文件路径')
   }
+  let flag = false
   for (let idx = 0; idx < selectPathList.length; idx++) {
     const selectPath = selectPathList[idx]
     const activatePath = activePathList[idx]
-    if (selectPath === activatePath) {
-      // ret.importPathList.push('..')
-    } else {
-      ret.importPathList.push(selectPath)
+    if (selectPath !== activatePath) {
+      flag = true
+    }
+    if (flag === true) {
+      if (idx === selectPathList.length - 1) {
+        ret.importPathList.push(selectPath)
+      } else {
+        ret.importPathList.push('..')
+      }
     }
   }
-  debugger
+  ret.importPath = ret.importPathList.join('/')
   return ret.importPath
 }
