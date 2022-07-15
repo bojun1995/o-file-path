@@ -157,8 +157,13 @@ export const getRelativePath = (selectionText: string, activePath: string): stri
     }
   }
 
-  for (let index = 0; index < activePathList.length - ret.sameIdx; index++) {
-    ret.importPathList.push('..')
+  // 同目录
+  if (ret.sameIdx === activePathList.length - 1) {
+    ret.importPathList.push('.')
+  } else {
+    for (let index = 0; index < activePathList.length - ret.sameIdx; index++) {
+      ret.importPathList.push('..')
+    }
   }
   for (let index = ret.sameIdx; index < selectPathList.length; index++) {
     ret.importPathList.push(selectPathList[index])
