@@ -126,14 +126,19 @@ export const getImportPath = (relativePath: string, aliasPath: string): string =
 }
 
 export const getRelativePath = (selectionText: string, activePath: string): string => {
-  // src/components/layout/TheLayout/TheEditorBox/index.vue
-  // src/components/layout/TheLayout/index.vue
-  // src/components/base/OButton/index.vue
-  // ../../base/OButton/index.vue
+  // 转换win反斜杠
+  selectionText = replacePath(selectionText)
+
   const ret = {
     importPath: '',
     importPathList: [] as string[],
+    sameIdx: -1,
   }
+
+  if (selectionText === activePath) {
+    throw new Error('请复制正确路径')
+  }
+
   if (selectionText === '') {
     throw new Error('请复制正确路径')
   }
@@ -143,24 +148,24 @@ export const getRelativePath = (selectionText: string, activePath: string): stri
     throw new Error('请选中正确的文件路径')
   }
 
-  let sameIdx = -1
   for (let idx = 0; idx < selectPathList.length; idx++) {
     const selectPath = selectPathList[idx]
     const activatePath = activePathList[idx]
     if (selectPath !== activatePath) {
-      sameIdx = idx
+      ret.sameIdx = idx
       break
     }
   }
-  for (let index = 0; index < activePathList.length - sameIdx; index++) {}
-  // if (flag === true) {
-  //   if (idx === selectPathList.length - 1) {
-  //     ret.importPathList.push(selectPath)
-  //   } else {
-  //     ret.importPathList.push('..')
-  //   }
-  // }
+
+  for (let index = 0; index < activePathList.length - ret.sameIdx; index++) {
+    ret.importPathList.push('..')
+  }
+  for (let index = ret.sameIdx; index < selectPathList.length; index++) {
+    ret.importPathList.push(selectPathList[index])
+  }
 
   ret.importPath = ret.importPathList.join('/')
-  return ret.importPath
+  const fileName = selectPathList[selectPathList.length - 1].split('.')[0]
+  const importName = getUpperCamelCaseName(fileName)
+  return `import ${importName} from '${ret.importPath}'`
 }
