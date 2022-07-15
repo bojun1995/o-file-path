@@ -103,18 +103,19 @@ export const getUpperCamelCaseName = (fileName: string): string => {
 
 /**
  * @description : 获取import path
- * @param {string} uri
+ * @param {string} relativePath
+ * @param {string} fromPath
  */
-export const getImportPath = (relativePath: string, aliasPath: string): string => {
+export const getImportPath = (relativePath: string, fromPath: string): string => {
   const pathList = relativePath.split('/')
   const fileNameList = pathList[pathList.length - 1].split('.')
   let fileNameWithoutType = ''
   if (fileNameList.length == 1) {
-    // test 没有文件格式
+    // 如：test 没有文件格式
     fileNameWithoutType = fileNameList[0]
   } else if (fileNameList.length > 1) {
-    // matrix.module.scss 多个点
-    // theme.scss 单个点
+    // 如：matrix.module.scss 多个点
+    // 如：theme.scss 单个点
     fileNameList.forEach((nameStr, nameIdx) => {
       if (nameIdx !== fileNameList.length - 1) {
         fileNameWithoutType += getUpperCamelCaseName(nameStr)
@@ -122,28 +123,24 @@ export const getImportPath = (relativePath: string, aliasPath: string): string =
     })
   }
   const importName = getUpperCamelCaseName(fileNameWithoutType)
-  return `import ${importName} from "${aliasPath}"`
+  return `import ${importName} from '${fromPath}'`
 }
 
-export const getRelativePath = (selectionText: string, activePath: string): string => {
-  // 转换win反斜杠
-  selectionText = replacePath(selectionText)
-
+export const getRelativePath = (selectedPath: string, activePath: string): string => {
   const ret = {
+    relativePath: '',
     importPath: '',
     importPathList: [] as string[],
     sameIdx: -1,
   }
 
-  if (selectionText === activePath) {
-    throw new Error('请复制正确路径')
+  const selectPathList = selectedPath.split('/')
+  const activePathList = activePath.split('/')
+
+  if (selectedPath === activePath) {
+    throw new Error('请勿选中当前窗口打开的文件')
   }
 
-  if (selectionText === '') {
-    throw new Error('请复制正确路径')
-  }
-  const selectPathList = selectionText.split('/')
-  const activePathList = activePath.split('/')
   if (selectPathList.length === 0) {
     throw new Error('请选中正确的文件路径')
   }
@@ -170,7 +167,5 @@ export const getRelativePath = (selectionText: string, activePath: string): stri
   }
 
   ret.importPath = ret.importPathList.join('/')
-  const fileName = selectPathList[selectPathList.length - 1].split('.')[0]
-  const importName = getUpperCamelCaseName(fileName)
-  return `import ${importName} from '${ret.importPath}'`
+  return ret.importPath
 }

@@ -10,24 +10,23 @@ export function activate(context: vscode.ExtensionContext) {
       aliasPath: '',
     }
     ret.relativePath = pathUtil.getRealPath(uri)
-
     if (ret.relativePath === '') {
       vscode.window.showErrorMessage('未能获取到文件路径')
-    } else {
-      try {
-        ret.aliasPath = pathUtil.replaceAlias(ret.relativePath)
-        clipboardUtil.writeText2Clipboard(ret.aliasPath)
-        vscode.window.showInformationMessage('已经复制别名路径', ret.aliasPath)
-      } catch (err) {
-        const error = err as Error
-        vscode.window.showErrorMessage(error.message)
-      }
+      return
+    }
+    try {
+      ret.aliasPath = pathUtil.replaceAlias(ret.relativePath)
+      clipboardUtil.writeText2Clipboard(ret.aliasPath)
+      vscode.window.showInformationMessage('已经复制别名路径', ret.aliasPath)
+    } catch (err) {
+      const error = err as Error
+      vscode.window.showErrorMessage(error.message)
     }
   })
 
   // import 别名路径
   const importAliasPath = vscode.commands.registerCommand(
-    'o-file-path.getImportAliasPath',
+    'o-file-path.getAliasImportPath',
     (uri: vscode.Uri | undefined) => {
       const ret = {
         relativePath: '',
@@ -35,42 +34,71 @@ export function activate(context: vscode.ExtensionContext) {
         importPath: '',
       }
       ret.relativePath = pathUtil.getRealPath(uri)
-
       if (ret.relativePath === '') {
         vscode.window.showErrorMessage('未能获取到文件路径')
-      } else {
-        try {
-          ret.aliasPath = pathUtil.replaceAlias(ret.relativePath)
-          ret.importPath = pathUtil.getImportPath(ret.relativePath, ret.aliasPath)
-          clipboardUtil.writeText2Clipboard(ret.importPath)
-          vscode.window.showInformationMessage('已经复制import别名路径', ret.importPath)
-        } catch (err) {
-          const error = err as Error
-          vscode.window.showErrorMessage(error.message)
-        }
+        return
+      }
+      try {
+        ret.aliasPath = pathUtil.replaceAlias(ret.relativePath)
+        ret.importPath = pathUtil.getImportPath(ret.relativePath, ret.aliasPath)
+        clipboardUtil.writeText2Clipboard(ret.importPath)
+        vscode.window.showInformationMessage('已经复制导入别名路径', ret.importPath)
+      } catch (err) {
+        const error = err as Error
+        vscode.window.showErrorMessage(error.message)
       }
     }
   )
 
-  const relativePath = vscode.commands.registerTextEditorCommand(
-    'o-file-path.getRelativePath',
-    (textEditor: vscode.TextEditor) => {
+  // 相对路径
+  const relativePath = vscode.commands.registerCommand('o-file-path.getRelativePath', (uri: vscode.Uri | undefined) => {
+    const ret = {
+      selectedPath: '',
+      activePath: '',
+      relativePath: '',
+    }
+    ret.selectedPath = pathUtil.getRealPath(uri)
+    ret.activePath = pathUtil.getActivePath()
+    if (ret.selectedPath === '' || ret.activePath === '') {
+      vscode.window.showErrorMessage('未能获取到文件路径')
+      return
+    }
+    try {
+      ret.relativePath = pathUtil.getRelativePath(ret.selectedPath, ret.activePath)
+      clipboardUtil.writeText2Clipboard(ret.relativePath)
+      vscode.window.showInformationMessage('已经复制相对路径', ret.relativePath)
+    } catch (err) {
+      const error = err as Error
+      vscode.window.showErrorMessage(error.message)
+    }
+  })
+  // 相对导入路径
+  const relativeImportPath = vscode.commands.registerCommand(
+    'o-file-path.getRelativeImportPath',
+    (uri: vscode.Uri | undefined) => {
+      const ret = {
+        selectedPath: '',
+        activePath: '',
+        relativePath: '',
+      }
+      ret.selectedPath = pathUtil.getRealPath(uri)
+      ret.activePath = pathUtil.getActivePath()
+      if (ret.selectedPath === '' || ret.activePath === '') {
+        vscode.window.showErrorMessage('未能获取到文件路径')
+        return
+      }
       try {
-        const selectionText = textEditor.document.getText(textEditor.selection)
-        if (selectionText === '') {
-          throw new Error('请选择要转换的文件路径')
-        }
-        const activePath = pathUtil.getActivePathByTextEditor(textEditor)
-        const ret = pathUtil.getRelativePath(selectionText, activePath)
-        clipboardUtil.writeText2Clipboard(ret)
-        vscode.window.showInformationMessage('已经复制相对路径', ret)
+        ret.relativePath = pathUtil.getRelativePath(ret.selectedPath, ret.activePath)
+        ret.relativePath = pathUtil.getImportPath(ret.selectedPath, ret.relativePath)
+        clipboardUtil.writeText2Clipboard(ret.relativePath)
+        vscode.window.showInformationMessage('已经复制导入相对路径', ret.relativePath)
       } catch (err) {
         const error = err as Error
-        vscode.window.showErrorMessage(error.message || '请选中正确的文件路径')
+        vscode.window.showErrorMessage(error.message)
       }
     }
   )
-  context.subscriptions.push(aliasPath, importAliasPath, relativePath)
+  context.subscriptions.push(aliasPath, importAliasPath, relativePath, relativeImportPath)
 }
 
 export function deactivate() {
