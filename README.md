@@ -47,6 +47,23 @@ import Test from './util/test.js'
 | 相对路径 | √ | x | x |
 | 导入相对路径 | √ | x | x |
 
+#### 配置说明
+##### 别名配置 o-file-path.alias
+```
+*配置应为数组形式
+*为防止同路径别名冲突，排在前面的配置会优先读取
+
+[
+  {
+    "alias": "#",
+    "path": "src/assets"
+  },
+  {
+    "alias": "@",
+    "path": "src"
+  }
+]
+```
 
 ## 开发方式
 #### 安装依赖
@@ -63,10 +80,7 @@ npm i
 2. F5 运行插件
 ```
 #### 本地打包插件
-```
-yarn releases
-# 编译后路径为 /releases
-```
+参考：[如何开发一款vscode插件](https://zhuanlan.zhihu.com/p/386196218)
 
 ## 技术栈
 - Typscript
