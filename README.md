@@ -69,7 +69,7 @@ import Test from './util/test.js'
 #### 安装依赖
 ```
 #yarn
-yarn i
+yarn
 
 #npm
 npm i
