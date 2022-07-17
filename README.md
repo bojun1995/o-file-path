@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/bojun1995/o-json-crx" target="_blank">
-    <img width="180" src="https://github.com/bojun1995/o-json-crx/blob/master/backup/LOGO PNG/o-tools%20%E7%99%BD%E5%BA%95.png" alt="logo">
+  <a href="https://github.com/bojun1995/o-file-path" target="_blank">
+    <img width="180" src="./back/logo/o-tools.png" alt="logo">
   </a>
 </p>
 

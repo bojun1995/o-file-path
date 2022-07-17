@@ -1,7 +1,7 @@
 {
   "name": "o-file-path",
   "displayName": "o-file-path",
-  "description": "",
+  "description": "文件路径",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.68.0"
@@ -70,7 +70,7 @@
       "title": "o-file-path",
       "properties": {
         "o-file-path.alias": {
-          "markdownDescription": "[ { \"alias\": \"@\", \"path\": \"src\" }, { \"alias\": \"#\", \"path\": \"src/assets\" } ]",
+          "markdownDescription": "https://github.com/bojun1995/o-file-path/blob/main/README.md",
           "type": "array"
         }
       }
