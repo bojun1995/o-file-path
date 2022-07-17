@@ -24,6 +24,10 @@
   ],
   "publisher": "bojun1995",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bojun1995/o-file-path"
+  },
   "activationEvents": [
     "onCommand:o-file-path.getAliasPath",
     "onCommand:o-file-path.getAliasImportPath",
