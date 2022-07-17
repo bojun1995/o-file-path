@@ -1,6 +1,7 @@
 <p align="center">
   <a href="https://github.com/bojun1995/o-file-path" target="_blank">
-    <img width="180" src="https://note.youdao.com/yws/res/9/WEBRESOURCE4b69f98f1446c63f012e87b8e4f77959" alt="logo">
+    <img width="180" src="https://github.com/bojun1995/o-file-path/blob/main/logo.png" alt="logo">
+    <img width="180" src="logo.png" alt="logo">
   </a>
 </p>
 
