@@ -9,6 +9,7 @@
   "categories": [
     "Other"
   ],
+  "icon": "./back/logo/o-tools.png",
   "keywords": [
     "alias",
     "file",
@@ -28,6 +29,11 @@
     "type": "git",
     "url": "https://github.com/bojun1995/o-file-path"
   },
+  "bugs": {
+    "url": "https://github.com/bojun1995/o-file-path/issues",
+    "email": "muddibr@gmail.com"
+  },
+  "homepage": "https://github.com/bojun1995/o-file-path",
   "activationEvents": [
     "onCommand:o-file-path.getAliasPath",
     "onCommand:o-file-path.getAliasImportPath",
