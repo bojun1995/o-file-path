@@ -1,6 +1,5 @@
 <p align="center">
   <a href="https://github.com/bojun1995/o-file-path" target="_blank">
-    <img width="180" src="https://github.com/bojun1995/o-file-path/blob/main/logo.png" alt="logo">
     <img width="180" src="logo.png" alt="logo">
   </a>
 </p>
