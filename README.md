@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/bojun1995/o-file-path" target="_blank">
-    <img width="180" src="https://github.com/bojun1995/o-file-path/blob/main/logo.png" alt="logo">
+    <img width="180" src="https://note.youdao.com/yws/res/9/WEBRESOURCE4b69f98f1446c63f012e87b8e4f77959" alt="logo">
   </a>
 </p>
 
@@ -20,9 +20,11 @@
 [VS Code插件商店](https://chrome.google.com/webstore/detail/o-json/pjgmamaikjfkchcapppciiabhcgihaha)
 
 #### 如何使用
+```
 - 侧边栏文件菜单 右键
 - 文件顶部菜单 右键
 - F1呼出命令执行面板 输入命令
+```
 
 *注意：相对路径、导入相对路径
 ```
@@ -33,7 +35,7 @@
 │   │   ├── test.js
 
 1.打开index.js
-2.侧边栏文件菜单右键选择a.js，选择 [复制导入相对路径]
+2.侧边栏文件菜单右键选择a.js，选择「复制导入相对路径」
 
 得到：
 import Test from './util/test.js'
@@ -80,7 +82,7 @@ npm i
 2. F5 运行插件
 ```
 #### 本地打包插件
-参考：[如何开发一款vscode插件](https://zhuanlan.zhihu.com/p/386196218)
+参考：[vsce —— 发布工具参阅](https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/working-with-extensions/publish-extension)
 
 ## 技术栈
 - Typscript
