@@ -1,7 +1,7 @@
 {
   "name": "o-file-path",
   "displayName": "o-file-path",
-  "description": "文件路径",
+  "description": "复制文件路径，别名路径，相对路径",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.68.0"
@@ -9,6 +9,21 @@
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "alias",
+    "file",
+    "path",
+    "relative",
+    "import",
+    "别名",
+    "文件",
+    "路径",
+    "相对",
+    "导入",
+    "vue"
+  ],
+  "publisher": "bojun1995",
+  "license": "MIT",
   "activationEvents": [
     "onCommand:o-file-path.getAliasPath",
     "onCommand:o-file-path.getAliasImportPath",
