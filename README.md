@@ -17,7 +17,7 @@
 ## 使用方式
 
 #### 下载
-[VS Code插件商店](https://chrome.google.com/webstore/detail/o-json/pjgmamaikjfkchcapppciiabhcgihaha)
+[VS Code插件商店](https://marketplace.visualstudio.com/items?itemName=bojun1995.o-file-path&ssr=false#overview)
 
 #### 如何使用
 ```
