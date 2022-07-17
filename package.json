@@ -38,24 +38,30 @@
     "menus": {
       "explorer/context": [
         {
-          "command": "o-file-path.getAliasPath"
+          "command": "o-file-path.getAliasPath",
+          "group": "o-file-path@1"
         },
         {
-          "command": "o-file-path.getAliasImportPath"
+          "command": "o-file-path.getAliasImportPath",
+          "group": "o-file-path@2"
         },
         {
-          "command": "o-file-path.getRelativePath"
+          "command": "o-file-path.getRelativePath",
+          "group": "o-file-path@3"
         },
         {
-          "command": "o-file-path.getRelativeImportPath"
+          "command": "o-file-path.getRelativeImportPath",
+          "group": "o-file-path@4"
         }
       ],
       "editor/title/context": [
         {
-          "command": "o-file-path.getAliasPath"
+          "command": "o-file-path.getAliasPath",
+          "group": "o-file-path@1"
         },
         {
-          "command": "o-file-path.getAliasImportPath"
+          "command": "o-file-path.getAliasImportPath",
+          "group": "o-file-path@2"
         }
       ]
     },

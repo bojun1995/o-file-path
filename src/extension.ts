@@ -25,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
   })
 
   // import 别名路径
-  const importAliasPath = vscode.commands.registerCommand(
+  const aliasImportPath = vscode.commands.registerCommand(
     'o-file-path.getAliasImportPath',
     (uri: vscode.Uri | undefined) => {
       const ret = {
@@ -98,7 +98,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
   )
-  context.subscriptions.push(aliasPath, importAliasPath, relativePath, relativeImportPath)
+  context.subscriptions.push(aliasPath, aliasImportPath, relativePath, relativeImportPath)
 }
 
 export function deactivate() {
