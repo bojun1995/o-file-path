@@ -127,6 +127,8 @@ export const getImportPath = (relativePath: string, fromPath: string): string =>
 }
 
 export const getRelativePath = (selectedPath: string, activePath: string): string => {
+  // 'src/views/ops/task/manage/components/TaskItemByStation.vue'
+  // 'src/views/ops/task/manage/taskAndItem/List/index.vue'
   const ret = {
     relativePath: '',
     importPath: '',
@@ -158,7 +160,7 @@ export const getRelativePath = (selectedPath: string, activePath: string): strin
   if (ret.sameIdx === activePathList.length - 1) {
     ret.importPathList.push('.')
   } else {
-    for (let index = 0; index < activePathList.length - ret.sameIdx; index++) {
+    for (let index = 0; index < activePathList.length - ret.sameIdx - 1; index++) {
       ret.importPathList.push('..')
     }
   }
