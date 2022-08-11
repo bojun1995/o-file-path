@@ -12,14 +12,16 @@
 
 # o-file-path
 
- [中文](https://github.com/bojun1995/o-file-path/blob/main/README-CN.md)
+[中文](https://github.com/bojun1995/o-file-path/blob/main/README-CN.md)
 
 ## 使用方式
 
 #### 下载
+
 [VS Code插件商店](https://marketplace.visualstudio.com/items?itemName=bojun1995.o-file-path&ssr=false#overview)
 
 #### 如何使用
+
 ```
 - 侧边栏文件菜单 右键
 - 文件顶部菜单 右键
@@ -27,6 +29,7 @@
 ```
 
 *注意：相对路径、导入相对路径
+
 ```
 例如：
 ├── src
@@ -42,15 +45,18 @@ import Test from './util/test.js'
 ```
 
 #### 功能入口兼容
-|  | 侧边栏文件菜单 | 文件顶部菜单 | 直接运行命令 |
-| --- | --- | --- | --- |
-| 别名路径 | ✅ | ✅ | ✅ |
-| 导入别名路径 | ✅ | ✅ | ✅ |
-| 相对路径 | ✅ | ❌ | ❌ |
-| 导入相对路径 | ✅ | ❌ | ❌ |
+
+|              | 侧边栏文件菜单 | 文件顶部菜单 | 直接运行命令 |
+| ------------ | -------------- | ------------ | ------------ |
+| 别名路径     | ✅             | ✅           | ✅           |
+| 导入别名路径 | ✅             | ✅           | ✅           |
+| 相对路径     | ✅             | ❌           | ❌           |
+| 导入相对路径 | ✅             | ❌           | ❌           |
 
 #### 配置说明
+
 ##### 别名配置 o-file-path.alias
+
 ```
 *配置应为数组形式
 *为防止同路径别名冲突，排在前面的配置会优先读取
@@ -68,7 +74,9 @@ import Test from './util/test.js'
 ```
 
 ## 开发方式
+
 #### 安装依赖
+
 ```
 #yarn
 yarn
@@ -76,17 +84,29 @@ yarn
 #npm
 npm i
 ```
+
 #### 本地开发
+
 ```
 1. 使用VS Code打开源码
 2. F5 运行插件
 ```
+
 #### 本地打包插件
+
 参考：[vsce —— 发布工具参阅](https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/working-with-extensions/publish-extension)
 
+```
+vsce package
+or
+vsce publish
+```
+
 ## 技术栈
+
 - Typscript
 - ESLint + Prettier + Husky
 
 ## 致谢
-- 开发教程 [VS-Code-Extension-Doc-ZH](https://github.com/Liiked/VS-Code-Extension-Doc-ZH)
+
+- 开发教程[VS-Code-Extension-Doc-ZH](https://github.com/Liiked/VS-Code-Extension-Doc-ZH)

@@ -2,7 +2,7 @@
   "name": "o-file-path",
   "displayName": "o-file-path",
   "description": "复制文件路径，别名路径，相对路径",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "vscode": "^1.68.0"
   },
