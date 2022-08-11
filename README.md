@@ -35,7 +35,7 @@
 │   │   ├── test.js
 
 1.打开index.js
-2.侧边栏文件菜单右键选择a.js，选择「复制导入相对路径」
+2.侧边栏文件菜单右键选择test.js，选择「复制导入相对路径」
 
 得到：
 import Test from './util/test.js'
