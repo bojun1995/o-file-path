@@ -73,6 +73,15 @@ import Test from './util/test.js'
 ]
 ```
 
+##### 别名配置 o-file-path.splitFileName
+
+```
+*配置应为数组形式
+
+['ts']
+```
+
+
 ## 开发方式
 
 #### 安装依赖

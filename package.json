@@ -31,7 +31,7 @@
   },
   "bugs": {
     "url": "https://github.com/bojun1995/o-file-path/issues",
-    "email": "muddibr@gmail.com"
+    "email": "bojun1995@foxmail.com"
   },
   "homepage": "https://github.com/bojun1995/o-file-path",
   "activationEvents": [
@@ -45,19 +45,19 @@
     "commands": [
       {
         "command": "o-file-path.getAliasPath",
-        "title": "📋 复制别名路径"
+        "title": "📋[@/] 复制别名路径"
       },
       {
         "command": "o-file-path.getAliasImportPath",
-        "title": "📋 复制导入别名路径"
+        "title": "📋[@/] 复制导入别名路径"
       },
       {
         "command": "o-file-path.getRelativePath",
-        "title": "📋 复制相对路径"
+        "title": "📋[ ./] 复制相对路径"
       },
       {
         "command": "o-file-path.getRelativeImportPath",
-        "title": "📋 复制导入相对路径"
+        "title": "📋[ ./] 复制导入相对路径"
       }
     ],
     "menus": {
@@ -95,6 +95,10 @@
       "title": "o-file-path",
       "properties": {
         "o-file-path.alias": {
+          "markdownDescription": "https://github.com/bojun1995/o-file-path/blob/main/README.md",
+          "type": "array"
+        },
+        "o-file-path.splitFileName": {
           "markdownDescription": "https://github.com/bojun1995/o-file-path/blob/main/README.md",
           "type": "array"
         }

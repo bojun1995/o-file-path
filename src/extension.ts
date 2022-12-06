@@ -10,6 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
       aliasPath: '',
     }
     ret.relativePath = pathUtil.getRealPath(uri)
+    ret.relativePath = pathUtil.getSplitFileNamePath(ret.relativePath)
     if (ret.relativePath === '') {
       vscode.window.showErrorMessage('未能获取到文件路径')
       return
@@ -34,6 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         importPath: '',
       }
       ret.relativePath = pathUtil.getRealPath(uri)
+      ret.relativePath = pathUtil.getSplitFileNamePath(ret.relativePath)
       if (ret.relativePath === '') {
         vscode.window.showErrorMessage('未能获取到文件路径')
         return
@@ -65,6 +67,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
     try {
       ret.relativePath = pathUtil.getRelativePath(ret.selectedPath, ret.activePath)
+      ret.relativePath = pathUtil.getSplitFileNamePath(ret.relativePath)
       clipboardUtil.writeText2Clipboard(ret.relativePath)
       vscode.window.showInformationMessage('已经复制相对路径', ret.relativePath)
     } catch (err) {
@@ -89,6 +92,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
       try {
         ret.relativePath = pathUtil.getRelativePath(ret.selectedPath, ret.activePath)
+        ret.relativePath = pathUtil.getSplitFileNamePath(ret.relativePath)
         ret.relativePath = pathUtil.getImportPath(ret.selectedPath, ret.relativePath)
         clipboardUtil.writeText2Clipboard(ret.relativePath)
         vscode.window.showInformationMessage('已经复制导入相对路径', ret.relativePath)

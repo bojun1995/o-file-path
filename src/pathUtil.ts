@@ -13,7 +13,6 @@ export const getRealPath = (uri: vscode.Uri | undefined): string => {
   if (typeof uri === 'undefined') {
     ret.path = getActivePath()
   }
-
   // 通过左侧文件栏菜单或文件顶部菜单调用
   if (uri instanceof vscode.Uri) {
     ret.path = vscode.workspace.asRelativePath(uri)
@@ -170,4 +169,28 @@ export const getRelativePath = (selectedPath: string, activePath: string): strin
 
   ret.importPath = ret.importPathList.join('/')
   return ret.importPath
+}
+
+/**
+ * @description : splitFileName
+ * @param {string} path
+ */
+export const getSplitFileNamePath = (path: string): string => {
+  let ret = ''
+  const splitFileConfig = vsCodeUtil.getSplitConfigList()
+  let flagFileName = ''
+  const flag = splitFileConfig.some((cfgFileName) => {
+    if (path.endsWith(`.${cfgFileName}`)) {
+      flagFileName = `.${cfgFileName}`
+      return true
+    } else {
+      return false
+    }
+  })
+  if (flag) {
+    ret = path.slice(0, path.length - flagFileName.length)
+  } else {
+    ret = path
+  }
+  return ret
 }
