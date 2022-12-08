@@ -81,7 +81,6 @@ import Test from './util/test.js'
 ['ts']
 ```
 
-
 ## 开发方式
 
 #### 安装依赖
@@ -106,9 +105,8 @@ npm i
 参考：[vsce —— 发布工具参阅](https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/working-with-extensions/publish-extension)
 
 ```
-vsce package
-or
-vsce publish
+1. 安装vsce
+2. vsce package
 ```
 
 ## 技术栈
