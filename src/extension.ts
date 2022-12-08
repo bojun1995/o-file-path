@@ -102,7 +102,33 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
   )
-  context.subscriptions.push(aliasPath, aliasImportPath, relativePath, relativeImportPath)
+  // 局部导入
+  const partImportPath = vscode.commands.registerCommand(
+    'o-file-path.getPartImportPath',
+    (uri: vscode.Uri | undefined) => {
+      const ret = {
+        relativePath: '',
+        aliasPath: '',
+        importPath: '',
+      }
+      ret.relativePath = pathUtil.getRealPath(uri)
+      ret.relativePath = pathUtil.getSplitFileNamePath(ret.relativePath)
+      if (ret.relativePath === '') {
+        vscode.window.showErrorMessage('未能获取到文件路径')
+        return
+      }
+      try {
+        ret.aliasPath = pathUtil.replaceAlias(ret.relativePath)
+        ret.importPath = pathUtil.getPartImportAliasPath(ret.aliasPath)
+        clipboardUtil.writeText2Clipboard(ret.importPath)
+        vscode.window.showInformationMessage('已经复制导入别名路径', ret.importPath)
+      } catch (err) {
+        const error = err as Error
+        vscode.window.showErrorMessage(error.message)
+      }
+    }
+  )
+  context.subscriptions.push(aliasPath, aliasImportPath, relativePath, relativeImportPath, partImportPath)
 }
 
 export function deactivate() {

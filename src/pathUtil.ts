@@ -194,3 +194,15 @@ export const getSplitFileNamePath = (path: string): string => {
   }
   return ret
 }
+
+export const getPartImportAliasPath = (fromPath: string): string => {
+  const editor = vscode.window.activeTextEditor
+  const doc = editor?.document
+  const selection = editor?.selection
+  const selectedWords = doc?.getText(selection).split('.') || ['']
+  const realWords = selectedWords[0]
+  if ((realWords ?? '') === '') {
+    throw new Error('请选中文件中要导出的对象/方法名')
+  }
+  return `import { ${realWords} } from ${fromPath}`
+}

@@ -38,7 +38,8 @@
     "onCommand:o-file-path.getAliasPath",
     "onCommand:o-file-path.getAliasImportPath",
     "onCommand:o-file-path.getRelativePath",
-    "onCommand:o-file-path.getRelativeImportPath"
+    "onCommand:o-file-path.getRelativeImportPath",
+    "onCommand:o-file-path.getPartImportPath"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -58,9 +59,20 @@
       {
         "command": "o-file-path.getRelativeImportPath",
         "title": "📋[ ./] 复制导入相对路径"
+      },
+      {
+        "command": "o-file-path.getPartImportPath",
+        "title": "📋[ {} from @/] 复制局部导入相对路径"
       }
     ],
     "menus": {
+      "editor/context": [
+        {
+          "command": "o-file-path.getPartImportPath",
+          "group": "o-file-path@1",
+          "when": "editorHasSelection"
+        }
+      ],
       "explorer/context": [
         {
           "command": "o-file-path.getAliasPath",
