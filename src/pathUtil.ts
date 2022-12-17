@@ -204,5 +204,5 @@ export const getPartImportAliasPath = (fromPath: string): string => {
   if ((realWords ?? '') === '') {
     throw new Error('请选中文件中要导出的对象/方法名')
   }
-  return `import { ${realWords} } from ${fromPath}`
+  return `import { ${realWords} } from '${fromPath}'`
 }
