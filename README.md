@@ -112,7 +112,7 @@ npm i
 
 ## 技术栈
 
-- Typscript
+- Typescript
 - ESLint + Prettier + Husky
 
 ## 致谢
